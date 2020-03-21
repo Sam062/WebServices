@@ -13,7 +13,7 @@ public class Test {
 			s.setSfee(1234.5);
 			
 			ObjectMapper om=new ObjectMapper();
-			File file=new File("F:\\WebServices\\Write_JsonToFile\\student.json");
+			File file=new File("F:\\WebServices\\JACKSON_Write_JsonToFile\\student.json");
 			om.writeValue(file, s);
 			System.out.println("DONE");
 			
