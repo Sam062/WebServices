@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="Jersry-CP-QueryParam-ProducerApp" path="/Jersry-CP-QueryParam-ProducerApp" reloadable="true" source="org.eclipse.jst.j2ee.server:Jersry-CP-QueryParam-ProducerApp"/></Host>
+      <Context docBase="Jersry-CP-QueryParam-DemoProducerApp" path="/Jersry-CP-QueryParam-DemoProducerApp" reloadable="true" source="org.eclipse.jst.j2ee.server:Jersry-CP-QueryParam-DemoProducerApp"/></Host>
     </Engine>
   </Service>
 </Server>
