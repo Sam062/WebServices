@@ -6,7 +6,7 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
-public class ConsumerTest {
+public class DemoConsumerTest {
 	public static void main(String[] args) {
 		String URI="http://localhost:2019/Jersry-CP-QueryParam-ProducerApp";
 		String path="/rest/emp";
