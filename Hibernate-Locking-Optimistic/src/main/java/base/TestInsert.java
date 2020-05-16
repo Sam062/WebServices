@@ -11,8 +11,8 @@ public class TestInsert {
 			tx=ses.beginTransaction();
 
 			Student s=new Student();
-			s.setSname("SAM");
-			s.setSfee(123.4);
+			s.setSname("AAA");
+			s.setSfee(111.22);
 
 			ses.save(s);
 
