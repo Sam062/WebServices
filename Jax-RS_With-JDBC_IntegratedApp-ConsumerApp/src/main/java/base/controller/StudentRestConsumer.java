@@ -39,10 +39,52 @@ public class StudentRestConsumer {
 
 			//JSON[{},{}]- List<Student>
 			list=resp.readEntity(new GenericType<List<Student>>(){});
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	public static String delStudent(int sid) {
+		String path="/rest/student/"+sid;
+		String msg=null;
+		try {
+			WebTarget wt=ClientBuilder.newClient().target(URI).path(path);
+			Invocation.Builder ib=wt.request();
+			Response resp=ib.delete();
+
+			System.out.println(resp.getStatus());
+			msg=resp.readEntity(String.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return msg;
+	}
+	public static Student getOneStudent(int sid) {
+		String path="/rest/student/"+sid;
+		Student std=null;
+		try {
+			WebTarget wt=ClientBuilder.newClient().target(URI).path(path);
+			Invocation.Builder ib=wt.request();
+			Response resp=ib.get();
+
+			std=resp.readEntity(Student.class);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return std;
+	}
+	public static String updateStudent(Student s) {
+		String path="/rest/student";
+		String msg=null;
+		try {
+			WebTarget wt=ClientBuilder.newClient().target(URI).path(path);
+			Invocation.Builder ib=wt.request();
+			Response resp=ib.put(Entity.json(s));
+			msg=resp.readEntity(String.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return msg;
 	}
 }

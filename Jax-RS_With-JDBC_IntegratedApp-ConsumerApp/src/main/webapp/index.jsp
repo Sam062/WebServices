@@ -12,7 +12,7 @@
 			<table>
 				<tr>
 					<td>ID</td>
-					<td><input type="text" name="sid" required="required"></td>
+					<td><input type="number" name="sid" required="required"></td>
 				</tr>
 				<tr>
 					<td>NAME</td>
