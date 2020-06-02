@@ -24,13 +24,13 @@ public class EmpRestContoller {
 
 	@GET
 	@Path("/service")
-	@RolesAllowed({"CUSTOMER,EMP"})
+	@RolesAllowed({"CUSTOMER","EMPLOYEE"})
 	public String empService() {
 		return "FROM EMPLOYEE SERVICE (RolesAllowed ANNOTATION) **";
 	}
 	@GET
 	@Path("/form")
-	@RolesAllowed({"EMP,ADMIN"})
+	@RolesAllowed({"EMPLOYEE","ADMIN"})
 	public String empForm() {
 		return "FROM EMPLOYEE FORM (RolesAllowed ANNOTATION) **";
 	}

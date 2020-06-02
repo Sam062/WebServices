@@ -19,6 +19,8 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.codec.binary.Base64;
 
+import base.validator.DBValidater;
+
 public class SecurityFilter implements ContainerRequestFilter {
 	@Context
 	private ResourceInfo info;
@@ -27,6 +29,7 @@ public class SecurityFilter implements ContainerRequestFilter {
 
 	@Override
 	public void filter(ContainerRequestContext req) throws IOException {
+		//Reflection API------------------------------
 		Method method=info.getResourceMethod();
 
 		if(method.isAnnotationPresent(DenyAll.class)) {
@@ -47,23 +50,25 @@ public class SecurityFilter implements ContainerRequestFilter {
 				un=token.nextToken();
 				pwd=token.nextToken();
 
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				req.abortWith(Response.status(Status.UNAUTHORIZED).entity("---- UNABLE TO GET AUTHORIZATION DATA ----").build());
 				return;
 
 			}
-			if(!(un.equals("systema")&&pwd.equals("root"))) {
+			if(!(DBValidater.validateUser(un, pwd))) {
 				req.abortWith(Response.status(Status.UNAUTHORIZED).entity("---- INVAID SECURITY DETAILS ----").build());
 				return;
 			}
 			else {
-				String[] role=method.getAnnotation(RolesAllowed.class).value();
-				List<String> roles=Arrays.asList(role);
-				System.out.println(roles); 
-				String user="CUSTOMER";
-				System.out.println(roles.contains(user));// WHY FALSE ?????
-				if(!roles.contains(user))
+				String[] roles=method.getAnnotation(RolesAllowed.class).value();
+				List<String> methodRole=Arrays.asList(roles);
+				System.out.println("METHOD ROLES : -------------------------"+methodRole); 
+
+				String userRole=DBValidater.getUserRole(un, pwd);
+
+				if(!(methodRole.contains(userRole)))
 					req.abortWith(Response.status(Status.FORBIDDEN).entity("--- ROLE FORBIDDEN TO ACCESS THIS SERVICE ---").build());
 			}
 		}
