@@ -27,7 +27,7 @@ public class UserRestContoller {
 		String data=null;
 		boolean exist=DBValidater.isUserExist(user, pwd);
 		if(exist) {
-			data=JWTUtil.generateToken("ID:"+user, user);
+			data=JWTUtil.generateToken(user, user);
 		}
 		else
 			data="INVALID USER '"+user+"' DETAILS";
