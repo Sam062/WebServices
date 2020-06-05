@@ -6,12 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-@Configuration
 @EnableWebMvc
+@Configuration
 @ComponentScan("base")
 public class AppConfig {
 	@Bean
-	public InternalResourceViewResolver ircv() {
+	public InternalResourceViewResolver ivr() {
 		return new InternalResourceViewResolver("/WEB-INF/views/",".jsp");
 	}
 }
